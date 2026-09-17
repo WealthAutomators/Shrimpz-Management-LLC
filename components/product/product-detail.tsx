@@ -67,7 +67,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
               {product.category}
             </p>
-            <h1 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl lg:text-4xl">
+            <h1 className="font-display mt-2 text-2xl font-medium tracking-tight md:text-3xl lg:text-4xl">
               {product.name}
             </h1>
 
@@ -76,7 +76,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
             <div className="mt-6 flex flex-wrap items-center gap-3">
               {hasDiscount ? (
                 <>
-                  <span className="text-3xl font-semibold text-accent">
+                  <span className="text-3xl font-medium">
                     {formatPrice(product.salePrice!)}
                   </span>
                   <span className="text-xl text-muted-foreground line-through">
@@ -94,7 +94,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <span className="text-sm text-muted-foreground">
                 {product.stock > 0 ? (
                   <span className="flex items-center gap-1.5">
-                    <span className="h-2 w-2 rounded-full bg-primary" />
+                    <span className="h-2 w-2 rounded-full bg-sage" />
                     {product.stock} in stock
                   </span>
                 ) : (
@@ -138,7 +138,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
                 aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
                 className="transition-transform active:scale-95"
               >
-                <Heart className={`h-4 w-4 transition-colors ${inWishlist ? "fill-accent text-accent" : ""}`} />
+                <Heart className={`h-4 w-4 transition-colors ${inWishlist ? "fill-foreground text-foreground" : ""}`} />
               </Button>
             </div>
 
@@ -195,7 +195,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 Free standard shipping on orders over $75. Standard delivery takes 3–5 business days.
                 Express shipping (1–2 business days) is available at checkout for $14.99.
-                We ship to all 50 US states. Orders placed before 2pm EST ship same day.
+                We ship to all 50 US states.
               </p>
             </section>
 

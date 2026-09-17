@@ -48,7 +48,7 @@ export const ProductCard = memo(function ProductCard({ product, className }: Pro
         transition={{ duration: 0.4 }}
         whileHover={{ y: -4 }}
       >
-        <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-border bg-muted shadow-sm transition-shadow duration-300 group-hover:shadow-lg">
+        <div className="relative aspect-[4/5] overflow-hidden border border-border/70 bg-muted">
           <Link href={`/product/${product.slug}`} className="block h-full w-full">
             <Image
               src={product.images[0]}
@@ -91,16 +91,16 @@ export const ProductCard = memo(function ProductCard({ product, className }: Pro
             <Button
               variant="secondary"
               size="icon"
-              className="h-9 w-9 rounded-full shadow-sm transition-transform hover:scale-110"
+              className="h-9 w-9 rounded-sm shadow-sm"
               onClick={() => toggleWishlist(product.id)}
               aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
             >
-              <Heart className={cn("h-4 w-4 transition-colors", inWishlist && "fill-accent text-accent")} />
+              <Heart className={cn("h-4 w-4 transition-colors", inWishlist && "fill-foreground text-foreground")} />
             </Button>
             <Button
               variant="secondary"
               size="icon"
-              className="h-9 w-9 rounded-full shadow-sm transition-transform hover:scale-110"
+              className="h-9 w-9 rounded-sm shadow-sm"
               onClick={() => setQuickViewOpen(true)}
               aria-label="Quick view"
             >
@@ -140,7 +140,7 @@ export const ProductCard = memo(function ProductCard({ product, className }: Pro
           <div className="mt-auto flex items-center gap-2">
             {hasDiscount ? (
               <>
-                <span className="text-sm font-semibold text-accent">{formatPrice(product.salePrice!)}</span>
+                <span className="text-sm font-semibold text-foreground">{formatPrice(product.salePrice!)}</span>
                 <span className="text-sm text-muted-foreground line-through">{formatPrice(product.price)}</span>
               </>
             ) : (

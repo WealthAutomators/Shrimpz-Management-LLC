@@ -4,66 +4,51 @@ import Image from "next/image";
 import Link from "next/link";
 import { categories } from "@/data/categories";
 import { Container } from "@/components/ui/container";
-import { SectionHeading } from "@/components/ui/section-heading";
 
 const homepageCategorySlugs = [
-  "electronics",
-  "home-kitchen",
-  "bathroom",
-  "educational-toys",
-  "pet-supplies",
-  "beauty",
-  "sports-outdoors",
-  "office-supplies",
-  "fashion-accessories",
-  "baby-products",
-];
-
-const gradientOverlays = [
-  "from-violet-600/80 to-purple-900/60",
-  "from-amber-500/80 to-orange-600/60",
-  "from-pink-500/80 to-rose-600/60",
-  "from-blue-500/80 to-indigo-600/60",
-  "from-emerald-500/80 to-teal-600/60",
-  "from-fuchsia-500/80 to-purple-600/60",
-  "from-cyan-500/80 to-blue-600/60",
-  "from-orange-500/80 to-red-500/60",
-  "from-rose-500/80 to-pink-600/60",
-  "from-lime-500/80 to-green-600/60",
+  "home",
+  "kitchen-dining",
+  "workspace",
+  "travel",
+  "outdoor",
+  "fitness-wellness",
+  "apparel",
+  "everyday-tech",
 ];
 
 export function CategoryCarousel() {
   const homepageCategories = categories.filter((c) => homepageCategorySlugs.includes(c.slug));
 
   return (
-    <section className="py-8 md:py-10">
+    <section className="border-b border-border py-12 md:py-16">
       <Container>
-        <SectionHeading title="Shop by Category" centered />
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-5">
-          {homepageCategories.map((category, index) => (
+        <div className="mb-8 flex items-end justify-between gap-4">
+          <div>
+            <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground">Departments</p>
+            <h2 className="font-display mt-2 text-2xl font-medium tracking-tight md:text-3xl">Shop by room and ritual</h2>
+          </div>
+          <Link href="/categories" className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline">
+            All categories
+          </Link>
+        </div>
+        <div className="flex gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible lg:gap-5">
+          {homepageCategories.map((category) => (
             <Link
               key={category.id}
               href={`/categories/${category.slug}`}
-              className="group relative overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+              className="group min-w-[160px] flex-1"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-[4/5] overflow-hidden bg-muted">
                 <Image
                   src={category.image}
                   alt={category.name}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width: 768px) 50vw, 20vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  sizes="(max-width: 768px) 160px, 25vw"
                 />
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t ${gradientOverlays[index % gradientOverlays.length]} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
-                />
-                <div className="absolute inset-0 flex items-end p-4">
-                  <span className="text-sm font-semibold text-white drop-shadow-md transition-transform duration-300 group-hover:translate-y-0 md:text-base">
-                    {category.name}
-                  </span>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               </div>
+              <p className="mt-3 text-sm font-medium tracking-wide">{category.name}</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground line-clamp-2">{category.description}</p>
             </Link>
           ))}
         </div>
